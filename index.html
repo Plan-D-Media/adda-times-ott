@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AddaTimes - Stream Exclusive Web Series, Blockbuster Movies & Originals</title>
+  <meta name="description" content="Discover thrilling original web series, detective sagas, award-winning movies, and uncut entertainment on AddaTimes. Watch trailers free and download the app.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23E50914'/><polygon points='38,28 75,50 38,72' fill='white'/></svg>">
+  <!-- Native iOS Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=1451433946">
+</head>
+<body class="dark-theme">
+
+  <!-- 1. LEFT-SIDE VERTICAL NAVIGATION RAIL (Desktop — Hoichoi Reference Pattern) -->
+  <aside id="left-nav-rail" class="left-nav-rail desktop-only" aria-label="Main Navigation">
+    <div class="rail-top">
+      <!-- Brand Logo -->
+      <a href="#hero" class="rail-brand-logo" aria-label="AddaTimes Home">
+        <img src="assets/adda-logo.png" alt="adda" class="rail-logo-img">
+        <span class="rail-logo-times">times</span>
+      </a>
+
+      <!-- Primary Get App Action Pill Directly Below Logo -->
+      <button class="rail-app-pill pulse-btn" onclick="redirectToApp('rail-pill')" aria-label="Download AddaTimes App" title="Get AddaTimes App">
+        GET APP
+      </button>
+    </div>
+
+    <!-- Navigation Icon Stack -->
+    <nav class="rail-nav-links" aria-label="Primary Navigation">
+      <!-- Search -->
+      <button class="rail-icon-btn" onclick="openSearchModal()" aria-label="Search" data-tooltip="Search (⌘K)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span class="rail-tooltip-label">Search</span>
+      </button>
+
+      <!-- Home -->
+      <a href="#hero" class="rail-icon-btn active" aria-label="Home" data-tooltip="Home">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+        <span class="rail-tooltip-label">Home</span>
+      </a>
+
+      <!-- Web Series -->
+      <a href="#web-series" class="rail-icon-btn" aria-label="Web Series" data-tooltip="Web Series">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+        <span class="rail-tooltip-label">Web Series</span>
+      </a>
+
+      <!-- Movies -->
+      <a href="#movies" class="rail-icon-btn" aria-label="Movies" data-tooltip="Movies">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <span class="rail-tooltip-label">Movies</span>
+      </a>
+
+      <!-- Originals -->
+      <a href="#originals" class="rail-icon-btn" aria-label="Originals" data-tooltip="Originals">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        <span class="rail-tooltip-label">Originals</span>
+      </a>
+
+      <!-- Free App Download -->
+      <button class="rail-icon-btn rail-free-btn" onclick="redirectToApp('left-rail')" aria-label="Free App" data-tooltip="Free App">
+        <span class="rail-free-text-badge">FREE</span>
+        <span class="rail-tooltip-label">Get App</span>
+      </button>
+    </nav>
+
+    <div class="rail-bottom">
+      <!-- Watchlist with dynamic counter -->
+      <button class="rail-icon-btn rail-watchlist-btn" onclick="toggleWatchlistDrawer()" aria-label="My Watchlist" data-tooltip="My Watchlist">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+        <span id="rail-watchlist-badge" class="rail-counter-badge">0</span>
+        <span class="rail-tooltip-label">Watchlist</span>
+      </button>
+
+      <!-- Account / Sign In -->
+      <button class="rail-icon-btn rail-user-btn" onclick="openLoginModal()" aria-label="Sign In" data-tooltip="Sign In">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span class="rail-tooltip-label">Sign In</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MOBILE TOP BAR (For screen widths <= 768px) -->
+  <header id="mobile-top-bar" class="mobile-top-bar mobile-only">
+    <div class="mobile-top-left">
+      <button class="mobile-icon-btn mobile-menu-toggle-btn" onclick="toggleMobileNavDrawer()" aria-label="Open Navigation Menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      <a href="#hero" class="mobile-brand-logo" aria-label="AddaTimes Home">
+        <img src="assets/adda-logo.png" alt="adda" class="brand-logo-img">
+        <span class="logo-times-text">times</span>
+      </a>
+    </div>
+    <div class="mobile-top-actions">
+      <button class="rail-app-pill-sm pulse-btn" onclick="redirectToApp('mobile-top-bar')" aria-label="Download App">GET APP</button>
+      <button class="mobile-icon-btn" onclick="openSearchModal()" aria-label="Search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      <button class="mobile-icon-btn" onclick="toggleWatchlistDrawer()" aria-label="My Watchlist">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+        <span id="mobile-top-watchlist-badge" class="badge-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER (Slide-out menu for mobile devices) -->
+  <aside id="mobile-nav-drawer" class="mobile-nav-drawer" aria-hidden="true" aria-label="Navigation Menu">
+    <div class="mobile-drawer-header">
+      <div class="mobile-drawer-brand">
+        <img src="assets/adda-logo.png" alt="adda" class="brand-logo-img">
+        <span class="logo-times-text">times</span>
+      </div>
+      <button class="mobile-drawer-close" onclick="toggleMobileNavDrawer()" aria-label="Close menu">✕</button>
+    </div>
+
+    <div class="mobile-drawer-body">
+      <button class="mobile-drawer-vip-card" onclick="toggleMobileNavDrawer(); openPricingModalOrScroll()">
+        <div class="vip-icon">👑</div>
+        <div class="vip-text">
+          <strong>Get AddaTimes VIP</strong>
+          <span>Stream all Originals & Movies ad-free</span>
+        </div>
+        <span class="vip-arrow">→</span>
+      </button>
+
+      <nav class="mobile-drawer-nav">
+        <a href="#hero" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+          <span>Home</span>
+        </a>
+        <a href="#featured-trailers" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Trailers & Previews</span>
+          <span class="mobile-drawer-badge">13 NEW</span>
+        </a>
+        <a href="#trending" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+          <span>Trending Top 10</span>
+        </a>
+        <a href="#movies" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+          <span>Movies</span>
+        </a>
+        <a href="#web-series" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+          <span>Web Series</span>
+        </a>
+        <a href="#originals" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span>Adda Originals</span>
+        </a>
+        <a href="#genres" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span>Genres</span>
+        </a>
+        <a href="#pricing" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          <span>Plans & Pricing</span>
+        </a>
+      </nav>
+
+      <div class="mobile-drawer-cta-stack">
+        <button class="btn-primary w-full pulse-btn" onclick="toggleMobileNavDrawer(); redirectToApp('mobile-drawer')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download Free App</span>
+        </button>
+        <button class="btn-secondary w-full mt-2" onclick="toggleMobileNavDrawer(); openLoginModal()">
+          <span>Sign In to Account</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+  <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" onclick="toggleMobileNavDrawer()"></div>
+
+  <!-- WATCHLIST SLIDE-OVER DRAWER -->
+  <aside id="watchlist-drawer" class="watchlist-drawer" aria-hidden="true" aria-label="Your Watchlist">
+    <div class="watchlist-header">
+      <div class="watchlist-title-wrap">
+        <h3>My Watchlist</h3>
+        <span id="watchlist-total-count" class="text-dim">0 saved titles</span>
+      </div>
+      <button class="dialog-close-btn" onclick="toggleWatchlistDrawer()" aria-label="Close Watchlist">✕</button>
+    </div>
+    <div class="watchlist-body" id="watchlist-items-list">
+      <div class="empty-watchlist-state">
+        <div class="empty-icon">🎬</div>
+        <p>Your watchlist is empty.</p>
+        <span class="text-dim">Bookmark your favorite movies, web series, and trailers to watch them anytime.</span>
+      </div>
+    </div>
+    <div class="watchlist-footer">
+      <button class="btn-primary w-full pulse-btn" onclick="syncWatchlistToApp()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <span>Sync Watchlist & Stream on App</span>
+      </button>
+    </div>
+  </aside>
+  <div id="drawer-backdrop" class="drawer-backdrop" onclick="toggleWatchlistDrawer()"></div>
+
+  <main>
+    <!-- 2. HERO SECTION — SLIDER-BASED VIDEO HERO (Hoichoi Reference Pattern) -->
+    <section id="hero" class="hero-video-section" aria-label="Featured Story Spotlight">
+      <!-- Full-bleed Background Video & Stage -->
+      <div class="hero-video-stage">
+        <div class="hero-youtube-wrap" id="hero-youtube-wrap">
+          <iframe id="hero-youtube-player" class="hero-youtube-player"
+            src="https://www.youtube-nocookie.com/embed/4Xwp8bt6pg0?autoplay=1&mute=1&controls=0&loop=1&playlist=4Xwp8bt6pg0&modestbranding=1&rel=0&showinfo=0&disablekb=1&playsinline=1&iv_load_policy=3&enablejsapi=1"
+            title="AddaTimes Spotlight Trailer"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <video id="hero-bg-video" class="hero-bg-video" autoplay muted loop playsinline preload="auto">
+          <source id="hero-video-src" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-fallback" id="hero-video-fallback" style="background-image: url('https://img.youtube.com/vi/4Xwp8bt6pg0/maxresdefault.jpg');"></div>
+        <div class="hero-vignette-left"></div>
+        <div class="hero-vignette-bottom"></div>
+        <div class="hero-vignette-top"></div>
+      </div>
+
+      <!-- Ambient Audio Mute/Unmute Toggle (Right side speaker icon as in reference) -->
+      <button id="hero-sound-toggle" class="hero-sound-toggle" onclick="toggleHeroSound()" aria-label="Toggle Sound" title="Sound Muted">
+        <svg id="hero-sound-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+      </button>
+
+      <!-- Hero Bottom Dock: Left Lead Content + Right Thumbnails Row -->
+      <div class="hero-floating-dock">
+        <!-- Left: Bengali stylized Title Graphic, Meta Line, Watch Now & Add to Watchlist -->
+        <div class="hero-lead-info">
+          <!-- Bengali Stylized Brand/Show Title Art -->
+          <div class="hero-title-art-wrap">
+            <h1 class="hero-bengali-title" id="hero-bengali-title">শাখা প্রশাখা ২</h1>
+          </div>
+
+          <h2 class="hero-english-title" id="hero-title">Shakha Proshakha</h2>
+
+          <div class="hero-meta-line" id="hero-meta-line">
+            <span id="hero-genre-text">Drama</span>
+            <span class="meta-dot">•</span>
+            <span id="hero-seasons-text">2 Seasons</span>
+            <span class="meta-dot">•</span>
+            <span id="hero-year-text">2026</span>
+            <span class="meta-dot">•</span>
+            <span class="hero-censor-pill" id="hero-censor-text">U/A 13+</span>
+          </div>
+
+          <div class="hero-actions-row">
+            <!-- Watch Free on App Primary Red Pill Button -->
+            <button class="btn-watch-now pulse-btn" id="hero-watch-btn" onclick="handleHeroWatchNow()" aria-label="Watch Free on App">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Watch Free on App</span>
+            </button>
+
+            <!-- Watch Trailer Secondary Ghost Button -->
+            <button class="btn-hero-trailer" id="hero-trailer-btn" onclick="handleHeroTrailerClick()" aria-label="Watch Trailer" title="Watch Trailer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+              <span>Trailer</span>
+            </button>
+
+            <!-- Square + Watchlist Button -->
+            <button class="btn-hero-plus" id="hero-plus-btn" onclick="handleHeroPlusClick()" aria-label="Add to Watchlist" title="Add to Watchlist">
+              <svg id="hero-plus-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: 5 Live Thumbnails Slider with glowing red active border & next arrow -->
+        <div class="hero-thumbs-cluster">
+          <div class="hero-thumbs-row" id="hero-thumbs-row" role="tablist" aria-label="Spotlight carousel">
+            <!-- Dynamically populated 5 thumbnail cards -->
+          </div>
+          <button class="hero-thumb-arrow" id="hero-thumb-next" onclick="advanceHeroSlide(1)" aria-label="Next slide" title="Next slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. FEATURED TRAILER — “Watch What’s Trending” -->
+    <section id="featured-trailers" class="content-section" aria-labelledby="section-trailer-heading">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">HIGH OCTANE PREVIEWS</span>
+          <h2 id="section-trailer-heading" class="section-title">Watch What’s Trending</h2>
+          <p class="section-subtitle">Experience preview clips and exclusive uncut trailers in stunning Full HD with zero subscription required.</p>
+        </div>
+        <div class="section-actions">
+          <div class="trailer-category-filters" role="tablist">
+            <button class="filter-tab active" onclick="filterTrailers('all', this)" role="tab" aria-selected="true">All</button>
+            <button class="filter-tab" onclick="filterTrailers('movie', this)" role="tab" aria-selected="false">Movies</button>
+            <button class="filter-tab" onclick="filterTrailers('series', this)" role="tab" aria-selected="false">Web Series</button>
+            <button class="filter-tab" onclick="filterTrailers('original', this)" role="tab" aria-selected="false">Originals</button>
+            <button class="filter-tab" onclick="filterTrailers('upcoming', this)" role="tab" aria-selected="false">Upcoming</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Large Featured Trailer Player Canvas -->
+      <div class="featured-player-stage">
+        <div class="player-wrapper" id="featured-player-container">
+          <!-- Real inline YouTube player wrap (displayed when user plays directly) -->
+          <div id="featured-youtube-wrap" class="featured-youtube-embed" style="display: none;"></div>
+
+          <div class="video-mockup-screen" id="active-trailer-screen">
+            <div class="mockup-poster" id="trailer-player-poster"></div>
+            <div class="mockup-overlay">
+              <div class="player-center-play" onclick="triggerActiveTrailerPlay()" title="Play Official Trailer">
+                <div class="play-pulse-ring"></div>
+                <div class="play-circle-btn" aria-label="Play Trailer">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Integrated Non-Overlapping HUD -->
+            <div class="player-bottom-hud">
+              <div class="player-timeline-hud">
+                <div class="hud-progress-track">
+                  <div class="hud-progress-fill"></div>
+                </div>
+                <div class="hud-time-display" id="active-trailer-hud-time">00:45 / 02:38 • Full HD 1080p • Official AddaTimes YouTube Channel</div>
+              </div>
+
+              <div class="player-hud-row">
+                <div class="player-meta">
+                  <span class="player-badge">NOW PREVIEWING OFFICIAL TRAILER</span>
+                  <h3 class="player-headline" id="active-trailer-title">Byomkesh Bakshi: The Death Maze</h3>
+                  <p class="player-sub" id="active-trailer-sub">Period Detective, Murder Mystery • 2m 38s • Director: Aritra Sen • Audio: Bengali, Hindi Dub</p>
+                </div>
+                <div class="player-hud-actions">
+                  <button class="btn-hud-play-now" onclick="triggerActiveTrailerPlay()">
+                    <span>▶ Play Now</span>
+                  </button>
+                  <button class="btn-hud-secondary" onclick="playTrailer(AppState.activeTrailerId)">
+                    <span>Fullscreen</span>
+                  </button>
+                  <button class="btn-hud-watch" onclick="redirectToApp('trailer-player')">
+                    <span>Watch in App</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Latest Trailers Shelf Cards below -->
+      <div class="shelf-container">
+        <div class="shelf-header-compact">
+          <span class="shelf-label">Select Trailer to Preview:</span>
+          <button class="link-more" onclick="exploreAllTrailers()">Explore All 40+ Trailers →</button>
+        </div>
+
+        <div class="horizontal-shelf-wrapper">
+          <button class="scroll-arrow left-arrow" onclick="scrollShelf('trailers-shelf', -1)" aria-label="Scroll trailers left">‹</button>
+          <div class="horizontal-shelf" id="trailers-shelf" tabindex="0" role="region" aria-label="Trailers carousel">
+            <!-- Populated via Javascript -->
+          </div>
+          <button class="scroll-arrow right-arrow" onclick="scrollShelf('trailers-shelf', 1)" aria-label="Scroll trailers right">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TRENDING NOW — “What Everyone’s Watching” (#1 to #7 Badges) -->
+    <section id="trending" class="content-section" aria-labelledby="section-trending-heading">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">AUDIENCE FAVORITES</span>
+          <h2 id="section-trending-heading" class="section-title">What Everyone’s Watching</h2>
+          <p class="section-subtitle">Real-time Top 10 rankings trending across West Bengal and Bengali diaspora globally.</p>
+        </div>
+        <div class="section-actions flex-align-center" style="display:flex; align-items:center; gap:0.75rem;">
+          <span class="auto-slider-badge" title="Auto-sliding active. Hover over cards to pause."><span class="live-dot"></span> AUTO-SLIDING</span>
+          <button class="btn-ghost-sm" onclick="showAllTrending()">See All Trending →</button>
+        </div>
+      </div>
+
+      <div class="horizontal-shelf-wrapper ranking-shelf-wrapper">
+        <button class="scroll-arrow left-arrow" onclick="scrollShelf('trending-shelf', -1)" aria-label="Scroll trending left">‹</button>
+        <div class="horizontal-shelf ranking-shelf" id="trending-shelf" tabindex="0" role="region" aria-label="Top 10 Trending titles">
+          <!-- Populated via Javascript with giant numbers 1, 2, 3... -->
+        </div>
+        <button class="scroll-arrow right-arrow" onclick="scrollShelf('trending-shelf', 1)" aria-label="Scroll trending right">›</button>
+      </div>
+    </section>
+
+    <!-- 5. MOVIES — “Movies You’ll Want to Watch” -->
+    <section id="movies" class="content-section" aria-labelledby="section-movies-heading">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">CINEMA AT HOME</span>
+          <h2 id="section-movies-heading" class="section-title">Movies You’ll Want to Watch</h2>
+          <p class="section-subtitle">Blockbusters, detective sagas, award-winning indie cinema, and heartfelt family dramas.</p>
+        </div>
+        <div class="section-actions">
+          <div class="sub-tab-group" role="tablist">
+            <button class="sub-tab active" onclick="filterMoviesCategory('latest', this)">Latest</button>
+            <button class="sub-tab" onclick="filterMoviesCategory('popular', this)">Popular</button>
+            <button class="sub-tab" onclick="filterMoviesCategory('top-rated', this)">Top Rated</button>
+            <button class="sub-tab" onclick="filterMoviesCategory('coming-soon', this)">Coming Soon</button>
+          </div>
+          <button class="btn-ghost-sm desktop-only" onclick="exploreAllCategory('movies')">Explore All Movies →</button>
+        </div>
+      </div>
+
+      <div class="horizontal-shelf-wrapper">
+        <button class="scroll-arrow left-arrow" onclick="scrollShelf('movies-shelf', -1)" aria-label="Scroll movies left">‹</button>
+        <div class="horizontal-shelf cards-grid-shelf" id="movies-shelf" tabindex="0" role="region" aria-label="Movies catalogue">
+          <!-- Populated via Javascript -->
+        </div>
+        <button class="scroll-arrow right-arrow" onclick="scrollShelf('movies-shelf', 1)" aria-label="Scroll movies right">›</button>
+      </div>
+      <div class="section-footer-cta mobile-only">
+        <button class="btn-ghost-sm w-full" onclick="exploreAllCategory('movies')">Explore All Movies →</button>
+      </div>
+    </section>
+
+    <!-- 6. WEB SERIES — “Binge-Worthy Web Series” -->
+    <section id="web-series" class="content-section" aria-labelledby="section-series-heading">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">MULTI-EPISODE THRILLS</span>
+          <h2 id="section-series-heading" class="section-title">Binge-Worthy Web Series</h2>
+          <p class="section-subtitle">Gripping plotlines, cliffhangers, and complex characters that keep you hooked all night.</p>
+        </div>
+        <div class="section-actions">
+          <div class="sub-tab-group" role="tablist">
+            <button class="sub-tab active" onclick="filterSeriesCategory('trending', this)">Trending Series</button>
+            <button class="sub-tab" onclick="filterSeriesCategory('new', this)">New Series</button>
+            <button class="sub-tab" onclick="filterSeriesCategory('popular', this)">Popular</button>
+            <button class="sub-tab" onclick="filterSeriesCategory('completed', this)">Completed</button>
+          </div>
+          <button class="btn-ghost-sm desktop-only" onclick="exploreAllCategory('series')">Explore All Web Series →</button>
+        </div>
+      </div>
+
+      <div class="horizontal-shelf-wrapper">
+        <button class="scroll-arrow left-arrow" onclick="scrollShelf('series-shelf', -1)" aria-label="Scroll series left">‹</button>
+        <div class="horizontal-shelf cards-grid-shelf" id="series-shelf" tabindex="0" role="region" aria-label="Web series catalogue">
+          <!-- Populated via Javascript -->
+        </div>
+        <button class="scroll-arrow right-arrow" onclick="scrollShelf('series-shelf', 1)" aria-label="Scroll series right">›</button>
+      </div>
+    </section>
+
+    <!-- 7. OTT ORIGINALS / EXCLUSIVES — “Only Here. Only for You.” -->
+    <section id="originals" class="content-section originals-spotlight-section" aria-labelledby="section-originals-heading">
+      <div class="originals-ambient-glow"></div>
+      
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow gold-gradient-text">ADDA SIGNATURE PRODUCTIONS</span>
+          <h2 id="section-originals-heading" class="section-title">Only Here. Only for You.</h2>
+          <p class="section-subtitle">Exclusive stories produced in-house with Bengal's most celebrated storytellers. Unavailable anywhere else.</p>
+        </div>
+        <div class="section-actions">
+          <button class="btn-secondary" onclick="redirectToApp('originals-section')">Explore All Originals</button>
+        </div>
+      </div>
+
+      <div class="originals-feature-grid" id="originals-grid">
+        <!-- Interactive High-impact Large Cards populated via JS -->
+      </div>
+    </section>
+
+    <!-- 8. GENRE DISCOVERY — “Find Something You’ll Love” -->
+    <section id="genres" class="content-section" aria-labelledby="section-genre-heading">
+      <div class="section-header text-center-mobile">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">FAST FILTERING</span>
+          <h2 id="section-genre-heading" class="section-title">Find Something You’ll Love</h2>
+          <p class="section-subtitle">Select your mood to instantly filter award-winning titles curated for your palate.</p>
+        </div>
+      </div>
+
+      <!-- Enhanced Genre Chips with Counts -->
+      <div class="genre-chips-container" id="genre-chips" role="tablist" aria-label="Content genres">
+        <button class="genre-chip active" data-genre="all" onclick="selectGenre('all', this)">
+          <span class="chip-icon">⚡</span> All Genres <span class="chip-count">80+</span>
+        </button>
+        <button class="genre-chip" data-genre="thriller" onclick="selectGenre('thriller', this)">
+          <span class="chip-icon">🔪</span> Thriller & Crime <span class="chip-count">24</span>
+        </button>
+        <button class="genre-chip" data-genre="detective" onclick="selectGenre('detective', this)">
+          <span class="chip-icon">🔍</span> Detective Mysteries <span class="chip-count">18</span>
+        </button>
+        <button class="genre-chip" data-genre="drama" onclick="selectGenre('drama', this)">
+          <span class="chip-icon">🎭</span> Intense Drama <span class="chip-count">32</span>
+        </button>
+        <button class="genre-chip" data-genre="romance" onclick="selectGenre('romance', this)">
+          <span class="chip-icon">❤️</span> Romance & Passion <span class="chip-count">16</span>
+        </button>
+        <button class="genre-chip" data-genre="comedy" onclick="selectGenre('comedy', this)">
+          <span class="chip-icon">😂</span> Satire & Comedy <span class="chip-count">12</span>
+        </button>
+        <button class="genre-chip" data-genre="action" onclick="selectGenre('action', this)">
+          <span class="chip-icon">💥</span> Action & Adventure <span class="chip-count">14</span>
+        </button>
+        <button class="genre-chip" data-genre="horror" onclick="selectGenre('horror', this)">
+          <span class="chip-icon">👻</span> Supernatural & Horror <span class="chip-count">9</span>
+        </button>
+      </div>
+
+      <!-- Filtered Showcase Shelf -->
+      <div class="genre-results-shelf-wrap mt-4">
+        <div class="results-meta-bar">
+          <span id="genre-results-count" class="text-dim">Showing 8 handpicked titles for All Genres</span>
+          <span class="badge-subtle">Filtered by rating & popularity</span>
+        </div>
+        <div class="horizontal-shelf-wrapper">
+          <button class="scroll-arrow left-arrow" onclick="scrollShelf('genre-shelf', -1)" aria-label="Scroll left">‹</button>
+          <div class="horizontal-shelf cards-grid-shelf" id="genre-shelf" tabindex="0">
+            <!-- Filtered dynamic cards -->
+          </div>
+          <button class="scroll-arrow right-arrow" onclick="scrollShelf('genre-shelf', 1)" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. NEW RELEASES / COMING SOON + COUNTDOWN TIMER -->
+    <section id="releases" class="content-section" aria-labelledby="section-releases-heading">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">NEVER RUN OUT OF STORIES</span>
+          <h2 id="section-releases-heading" class="section-title">Fresh Stories. New Every Week.</h2>
+          <p class="section-subtitle">Catch newly unlocked releases or set reminders for highly-anticipated premieres.</p>
+        </div>
+        <div class="section-actions">
+          <div class="segmented-control" role="tablist">
+            <button id="tab-just-released" class="segment-btn active" onclick="switchReleaseTab('just-released', this)" role="tab" aria-selected="true">Just Released</button>
+            <button id="tab-coming-soon" class="segment-btn" onclick="switchReleaseTab('coming-soon', this)" role="tab" aria-selected="false">Coming Soon</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Big Premiere Live Countdown Banner -->
+      <div class="premiere-countdown-banner">
+        <div class="countdown-content">
+          <div class="countdown-eyebrow">
+            <span class="dot-live"></span> NEXT MEGA PREMIERE: BYOMKESH: DURGO ROHOSHYO
+          </div>
+          <h3 class="countdown-title">The Master Sleuth Returns to the Mountains</h3>
+          <p class="countdown-sub">Stream uncut on Nov 14, 2026. Be the first to unlock Episode 1 on the app.</p>
+        </div>
+        <div class="countdown-clock" id="premiere-clock" aria-label="Time until premiere">
+          <div class="clock-unit"><span class="clock-num" id="cd-days">03</span><span class="clock-lbl">Days</span></div>
+          <span class="clock-sep">:</span>
+          <div class="clock-unit"><span class="clock-num" id="cd-hours">14</span><span class="clock-lbl">Hours</span></div>
+          <span class="clock-sep">:</span>
+          <div class="clock-unit"><span class="clock-num" id="cd-mins">28</span><span class="clock-lbl">Mins</span></div>
+          <span class="clock-sep">:</span>
+          <div class="clock-unit"><span class="clock-num" id="cd-secs">45</span><span class="clock-lbl">Secs</span></div>
+        </div>
+        <div class="countdown-action">
+          <button class="btn-primary pulse-btn" onclick="setReleaseReminder('Byomkesh: Durgo Rohoshyo')">
+            <span>🔔 Remind Me on App</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="release-showcase-container" id="releases-container">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="text-center mt-6">
+        <button class="btn-ghost" onclick="redirectToApp('upcoming-calendar')">
+          <span>View Complete 2026 Premiere Calendar on App →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 10. STRONG APP DOWNLOAD LEAD MAGNET — “More Stories. One App.” -->
+    <section id="app-download-section" class="lead-magnet-section" aria-labelledby="app-lead-heading">
+      <div class="lead-magnet-card">
+        <div class="lead-magnet-glow"></div>
+        <div class="lead-magnet-content">
+          <span class="lead-badge">UNLIMITED STREAMING IN YOUR POCKET</span>
+          <h2 id="app-lead-heading" class="lead-title">More Stories. One App.</h2>
+          <p class="lead-description">
+            Watch your favourite movies, web series, and exclusive originals anytime, anywhere. Experience 4K HDR playback, offline downloads, and multi-profile sync across all your gadgets.
+          </p>
+
+          <div class="lead-benefits-grid">
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <strong>Full Uncut Episodes</strong>
+                <span>Zero censorship, director's cut specials</span>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <strong>Exclusive Originals</strong>
+                <span>New shows launching every Friday</span>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <strong>Smart Offline Downloads</strong>
+                <span>Save shows to watch during travel & commute</span>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <strong>Seamless Cross-Device Play</strong>
+                <span>Switch from phone to Smart TV seamlessly</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="download-cta-row">
+            <a href="https://play.google.com/store/apps/details?id=com.addatimes.app&hl=en" target="_blank" rel="noopener noreferrer" onclick="triggerDownload('android')" class="app-store-badge" aria-label="Download for Android on Google Play">
+              <div class="store-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9997.4482.9997.9993 0 .5511-.4486.9997-.9997.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9997.4482.9997.9993 0 .5511-.4486.9997-.9997.9997m11.4045-6.02l1.996-3.4568a.416.416 0 00-.1523-.5676.416.416 0 00-.568.1523l-2.0223 3.5028c-1.4284-.652-3.0336-1.0263-4.7349-1.0263-1.7013 0-3.3065.3743-4.7349 1.0263L5.6427 5.4493a.416.416 0 00-.568-.1523.416.416 0 00-.1523.5676l1.996 3.4568C3.0456 11.0028 1 14.2818 1 18.0645h22c0-3.7827-2.0456-7.0617-5.8815-8.7431"/></svg>
+              </div>
+              <div class="store-text">
+                <span class="store-sub">GET IT ON</span>
+                <span class="store-main">Google Play</span>
+              </div>
+            </a>
+
+            <a href="https://apps.apple.com/in/app/addatimes/id1451433946" target="_blank" rel="noopener noreferrer" onclick="triggerDownload('ios')" class="app-store-badge" aria-label="Download for iOS on App Store">
+              <div class="store-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.76 1.04-1.82.93-2.87-.9.04-1.99.6-2.64 1.36-.57.65-1.07 1.72-.94 2.74 1.01.08 2.03-.47 2.65-1.23z"/></svg>
+              </div>
+              <div class="store-text">
+                <span class="store-sub">Download on the</span>
+                <span class="store-main">App Store</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="sms-link-wrapper">
+            <span class="sms-title">Or get an instant download link on your phone via SMS:</span>
+            <form class="sms-form" onsubmit="handleSendAppSMS(event)">
+              <div class="input-with-prefix">
+                <span class="prefix">+91</span>
+                <input type="tel" id="mobile-phone-input" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required aria-label="Mobile Number">
+              </div>
+              <button type="submit" class="btn-primary">Send Link</button>
+            </form>
+            <span id="sms-feedback" class="sms-feedback-msg" aria-live="polite"></span>
+          </div>
+
+          <div class="app-trust-guarantee">
+            <span>🛡️ 100% Virus-Free APK</span>
+            <span>⭐ 4.6★ Rated (45,000+ Reviews)</span>
+            <span>👥 2M+ Downloads</span>
+          </div>
+        </div>
+
+        <!-- Desktop QR Code & Device Showcase visual -->
+        <div class="lead-magnet-visual">
+          <div class="device-mockup-frame real-app-frame">
+            <img src="assets/app-mockup.png" alt="AddaTimes Official Mobile App - Unlimited Movies & Web Series" class="phone-real-mockup-img" loading="lazy">
+          </div>
+
+          <div class="qr-code-box">
+            <div class="qr-graphic">
+              <svg viewBox="0 0 100 100" width="100%" height="100%" shape-rendering="crispEdges">
+                <rect width="100" height="100" fill="#ffffff" rx="6"/>
+                <rect x="10" y="10" width="24" height="24" fill="#0b0e14"/>
+                <rect x="14" y="14" width="16" height="16" fill="#ffffff"/>
+                <rect x="18" y="18" width="8" height="8" fill="#e50914"/>
+                <rect x="66" y="10" width="24" height="24" fill="#0b0e14"/>
+                <rect x="70" y="14" width="16" height="16" fill="#ffffff"/>
+                <rect x="74" y="18" width="8" height="8" fill="#e50914"/>
+                <rect x="10" y="66" width="24" height="24" fill="#0b0e14"/>
+                <rect x="14" y="70" width="16" height="16" fill="#ffffff"/>
+                <rect x="18" y="74" width="8" height="8" fill="#e50914"/>
+                <rect x="38" y="12" width="6" height="6" fill="#0b0e14"/>
+                <rect x="48" y="18" width="6" height="6" fill="#0b0e14"/>
+                <rect x="38" y="28" width="6" height="6" fill="#0b0e14"/>
+                <rect x="52" y="28" width="6" height="6" fill="#0b0e14"/>
+                <rect x="42" y="38" width="16" height="6" fill="#0b0e14"/>
+                <rect x="12" y="42" width="6" height="14" fill="#0b0e14"/>
+                <rect x="24" y="46" width="8" height="6" fill="#0b0e14"/>
+                <rect x="68" y="42" width="16" height="6" fill="#0b0e14"/>
+                <rect x="76" y="52" width="12" height="6" fill="#0b0e14"/>
+                <rect x="40" y="52" width="6" height="8" fill="#0b0e14"/>
+                <rect x="52" y="62" width="14" height="6" fill="#0b0e14"/>
+                <rect x="38" y="70" width="8" height="8" fill="#0b0e14"/>
+                <rect x="68" y="68" width="6" height="18" fill="#0b0e14"/>
+                <rect x="80" y="78" width="8" height="8" fill="#0b0e14"/>
+              </svg>
+            </div>
+            <div class="qr-info">
+              <span class="qr-badge">SCAN TO GET APP</span>
+              <span class="qr-text">Point camera to install instant APK or iOS app</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. SUBSCRIPTION CONVERSION SECTION — “Ready to Watch More?” -->
+    <section id="pricing" class="content-section pricing-section" aria-labelledby="section-pricing-heading">
+      <div class="section-header text-center">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow gold-gradient-text">SIMPLE & TRANSPARENT ACCESS</span>
+          <h2 id="section-pricing-heading" class="section-title">Ready to Watch More?</h2>
+          <p class="section-subtitle">Unlock unlimited access to every movie, binge-worthy series, and exclusive uncut originals.</p>
+        </div>
+      </div>
+
+      <!-- Interactive Billing Toggle Switch (CRO Optimization) -->
+      <div class="billing-toggle-container">
+        <span class="toggle-label" id="lbl-monthly">Monthly</span>
+        <button class="billing-switch active" id="billing-switch" onclick="toggleBillingCycle()" role="switch" aria-checked="true" aria-label="Toggle Annual Billing">
+          <span class="switch-handle"></span>
+        </button>
+        <span class="toggle-label active" id="lbl-annual">Annual VIP <span class="savings-tag">SAVE 50%</span></span>
+      </div>
+
+      <!-- Pricing Plans Cards -->
+      <div class="pricing-grid">
+        <!-- Monthly Plan -->
+        <div class="pricing-card" data-plan="monthly">
+          <div class="plan-header">
+            <span class="plan-name">Monthly Pass</span>
+            <div class="plan-price">
+              <span class="currency">₹</span>
+              <span class="amount" id="price-monthly">149</span>
+              <span class="period">/month</span>
+            </div>
+            <p class="plan-desc">Perfect for testing out the latest releases and weekend binging.</p>
+          </div>
+          <div class="plan-features">
+            <ul>
+              <li><span class="check">✓</span> Full access to all 500+ Movies & Series</li>
+              <li><span class="check">✓</span> 1080p Full HD Streaming</li>
+              <li><span class="check">✓</span> Watch on Mobile & Tablet</li>
+              <li><span class="check">✓</span> 1 Screen at a time</li>
+              <li class="disabled"><span class="cross">✕</span> Ultra 4K HDR & Dolby 5.1</li>
+              <li class="disabled"><span class="cross">✕</span> Smart TV support</li>
+            </ul>
+          </div>
+          <div class="plan-cta">
+            <button class="btn-secondary w-full" onclick="selectPlan('Monthly', 149)">Subscribe Monthly</button>
+          </div>
+        </div>
+
+        <!-- Quarterly Plan (Popular) -->
+        <div class="pricing-card" data-plan="quarterly">
+          <div class="popular-ribbon">POPULAR VALUE</div>
+          <div class="plan-header">
+            <span class="plan-name">Quarterly Pass</span>
+            <div class="plan-price">
+              <span class="currency">₹</span>
+              <span class="amount" id="price-quarterly">349</span>
+              <span class="period">/3 months</span>
+            </div>
+            <p class="plan-desc">Save 22% compared to monthly. Ideal for active entertainment buffs.</p>
+          </div>
+          <div class="plan-features">
+            <ul>
+              <li><span class="check">✓</span> Full access to all Originals & Premieres</li>
+              <li><span class="check">✓</span> 4K Ultra HD + Dolby Surround</li>
+              <li><span class="check">✓</span> Mobile, Tablet, Laptop & Smart TV</li>
+              <li><span class="check">✓</span> 2 Screens simultaneously</li>
+              <li><span class="check">✓</span> Unlimited offline downloads</li>
+              <li><span class="check">✓</span> Ad-free experience</li>
+            </ul>
+          </div>
+          <div class="plan-cta">
+            <button class="btn-secondary w-full" onclick="selectPlan('Quarterly', 349)">Subscribe Quarterly</button>
+          </div>
+        </div>
+
+        <!-- Yearly Plan (Best Value - Featured) -->
+        <div class="pricing-card featured-plan best-value-plan" data-plan="yearly">
+          <div class="savings-ribbon">⭐ BEST VALUE — JUST ₹2.4/DAY</div>
+          <div class="plan-header">
+            <span class="plan-name">Annual VIP Pass</span>
+            <div class="plan-price">
+              <span class="currency">₹</span>
+              <span class="amount" id="price-yearly">899</span>
+              <span class="period">/year</span>
+            </div>
+            <p class="plan-desc">Less than ₹75/month. Enjoy 12 months for the price of 6!</p>
+          </div>
+          <div class="plan-features">
+            <ul>
+              <li><span class="check">✓</span> Everything in Quarterly VIP</li>
+              <li><span class="check">✓</span> Early Access to upcoming web series premieres</li>
+              <li><span class="check">✓</span> 4 Screens simultaneously for family</li>
+              <li><span class="check">✓</span> Highest bitrate 4K HDR streaming</li>
+              <li><span class="check">✓</span> Exclusive virtual premiere passes & cast meets</li>
+              <li><span class="check">✓</span> VIP customer priority support</li>
+            </ul>
+          </div>
+          <div class="plan-cta">
+            <button class="btn-gold w-full pulse-btn" onclick="selectPlan('Yearly', 899)">Subscribe VIP Annual</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust & Payment Methods Strip -->
+      <div class="pricing-trust-strip">
+        <div class="trust-guarantee-box">
+          <span class="guarantee-badge">🛡️ 7-DAY ZERO RISK GUARANTEE</span>
+          <p>If you don't love AddaTimes, cancel within 7 days for a full hassle-free refund. Instant 1-click cancellation in app settings.</p>
+        </div>
+        <div class="payment-partners">
+          <span class="pay-title">SECURE PAYMENTS ACCEPTED:</span>
+          <div class="pay-icons">
+            <span class="pay-badge">UPI</span>
+            <span class="pay-badge">Google Pay</span>
+            <span class="pay-badge">PhonePe</span>
+            <span class="pay-badge">Paytm</span>
+            <span class="pay-badge">Credit/Debit Cards</span>
+            <span class="pay-badge">Net Banking</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick 4-Step Conversion Pathway -->
+      <div class="conversion-steps-bar">
+        <h4 class="steps-heading">How to Start Watching in Under 60 Seconds:</h4>
+        <div class="steps-flow">
+          <div class="step-card">
+            <span class="step-num">1</span>
+            <span class="step-title">Download App</span>
+            <span class="step-text">Install free on Android, iOS or Smart TV</span>
+          </div>
+          <div class="step-separator">→</div>
+          <div class="step-card">
+            <span class="step-num">2</span>
+            <span class="step-title">Create Account</span>
+            <span class="step-text">Quick 1-click Google or mobile OTP login</span>
+          </div>
+          <div class="step-separator">→</div>
+          <div class="step-card">
+            <span class="step-num">3</span>
+            <span class="step-title">Choose Plan</span>
+            <span class="step-text">Select monthly or yearly with secure UPI</span>
+          </div>
+          <div class="step-separator">→</div>
+          <div class="step-card highlight-step">
+            <span class="step-num">4</span>
+            <span class="step-title">Start Watching</span>
+            <span class="step-text">Stream all episodes and blockbuster cinema</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. SOCIAL PROOF / TRUST — “Join Thousands of Entertainment Lovers” -->
+    <section id="social-proof" class="content-section trust-section" aria-labelledby="section-trust-heading">
+      <div class="section-header text-center">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">VERIFIED RECOGNITION</span>
+          <h2 id="section-trust-heading" class="section-title">Join Thousands of Entertainment Lovers</h2>
+          <p class="section-subtitle">Rated 4.6★ by binge-watchers, critics, and Bengali cinema lovers globally.</p>
+        </div>
+      </div>
+
+      <div class="stats-ribbon">
+        <div class="stat-box">
+          <span class="stat-number">4.6★</span>
+          <span class="stat-label">Google Play & App Store Rating</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">2M+</span>
+          <span class="stat-label">App Downloads Worldwide</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Exclusive Titles & Episodes</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">18+</span>
+          <span class="stat-label">Industry & Film Festival Awards</span>
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">“Shobdo Jobdo and Feluda series on AddaTimes are masterclasses in suspense. The picture quality and sound mastering on my Smart TV are top notch!”</p>
+          <div class="test-author">
+            <div class="author-avatar av-1">AB</div>
+            <div class="author-meta">
+              <strong>Anirban Banerjee</strong>
+              <span>Kolkata • Verified VIP Subscriber</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">“Being in the UK, AddaTimes keeps me connected with home. The streaming is buttery smooth even on 4G, and the offline downloads feature is a lifesaver for flights.”</p>
+          <div class="test-author">
+            <div class="author-avatar av-2">SM</div>
+            <div class="author-meta">
+              <strong>Sreemoyi Mukherjee</strong>
+              <span>London • Annual Subscriber</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">“Original storytelling at its finest. From crime thrillers to nostalgic comedies, there is something fresh dropping every single week. Highly recommended.”</p>
+          <div class="test-author">
+            <div class="author-avatar av-3">RD</div>
+            <div class="author-meta">
+              <strong>Rohan Deb</strong>
+              <span>Bengaluru • Tech Lead & Cinema Buff</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="press-partners-wrap">
+        <span class="press-label">FEATURED & ACCLAIMED BY</span>
+        <div class="press-logos">
+          <span class="press-item">The Telegraph</span>
+          <span class="press-item">Times of India</span>
+          <span class="press-item">Anandabazar Patrika</span>
+          <span class="press-item">Film Companion</span>
+          <span class="press-item">NDTV Movies</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. FAQ — Frequently Asked Questions Accordion -->
+    <section id="faq" class="content-section faq-section" aria-labelledby="section-faq-heading">
+      <div class="section-header text-center">
+        <div class="section-title-wrap">
+          <span class="section-eyebrow">GOT QUESTIONS?</span>
+          <h2 id="section-faq-heading" class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Everything you need to know about streaming, plans, and the AddaTimes app.</p>
+        </div>
+      </div>
+
+      <div class="faq-accordion-container" id="faq-container">
+        <div class="faq-item active">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="true">
+            <span>What content can I watch on AddaTimes?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>AddaTimes features an expansive catalogue of original Bengali web series, award-winning thriller movies, detective sagas (including Feluda), romantic dramas, comedy sketches, short films, and music videos. All titles are available with English subtitles, and select blockbusters are also dubbed in Hindi.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>Do I need the app to watch?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>You can preview all trailers, teaser clips, and first episodes directly on our website! To unlock full seasons, 4K playback, and offline downloads, simply download the AddaTimes app on your Android, iPhone/iPad, Android TV, Fire TV stick, or Apple TV.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>How much does the subscription cost?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We provide ultra-flexible plans: Monthly at ₹149, Quarterly at ₹349 (Save 22%), and the best-value Annual Pass at ₹899 (effective ₹75/mo or ₹2.4/day). All subscriptions grant unlimited uninterrupted streaming with zero ads.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>Which devices are supported?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>AddaTimes is supported on Android phones and tablets (Android 7+), Apple iPhone and iPad (iOS 13+), Apple TV, Google TV, Android TV, Amazon Fire TV Stick, Samsung Tizen Smart TVs, and modern web browsers (Chrome, Safari, Firefox, Edge).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>Can I watch on multiple devices simultaneously?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Depending on your chosen plan: the Monthly Pass supports 1 active screen, the Quarterly Plan supports 2 concurrent screens, and the Annual VIP Pass supports up to 4 concurrent screens across family members.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>Can I watch trailers without subscribing?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, 100% free! Every single trailer, behind-the-scenes featurette, and select pilot episodes are completely free to stream without requiring a credit card or subscription.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+            <span>How do I cancel my subscription?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>You can cancel your subscription at any time with a single tap under 'Account Settings' &gt; 'My Subscription' on the mobile app or web portal. You will continue to have full access until the end of your billing cycle with zero questions asked.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. FINAL CONVERSION BANNER — “Your Next Favourite Story Is Waiting.” -->
+    <section id="final-cta" class="final-banner-section" aria-labelledby="final-cta-heading">
+      <div class="final-banner-glow"></div>
+      <div class="final-banner-content">
+        <span class="banner-tag">UNLIMITED ENTERTAINMENT</span>
+        <h2 id="final-cta-heading" class="final-banner-title">Your Next Favourite Story Is Waiting.</h2>
+        <p class="final-banner-sub">
+          Movies. Web Series. Originals. Trailers. All in one place. Stream uninterrupted on your favorite device today.
+        </p>
+
+        <div class="final-cta-buttons">
+          <button class="btn-primary-large pulse-btn" onclick="redirectToApp('final-banner')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download the App & Start Watching</span>
+          </button>
+          
+          <button class="btn-ghost-large" onclick="scrollToSection('pricing')">
+            <span>View Subscription Plans (From ₹75/mo)</span>
+          </button>
+        </div>
+
+        <div class="final-guarantee-strip">
+          <span>✓ Instant Access</span>
+          <span>✓ Cancel Anytime</span>
+          <span>✓ 7-Day Money Back Guarantee</span>
+          <span>✓ Safe & Secure Payments (UPI, Cards, NetBanking)</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PERSISTENT FLOATING BOTTOM CONVERSION BAR (Mobile & Desktop) -->
+  <aside id="floating-bottom-bar" class="floating-bottom-bar" aria-label="Quick App Download Bar">
+    <div class="floating-bar-inner">
+      <div class="floating-left">
+        <div class="floating-mini-art"></div>
+        <div class="floating-text">
+          <strong class="floating-title">Watch Uncut Stories on AddaTimes App</strong>
+          <span class="floating-sub">Trailers & Pilot Episodes are 100% Free • HD 1080p</span>
+        </div>
+      </div>
+      <div class="floating-actions">
+        <button class="btn-floating-plan desktop-only" onclick="scrollToSection('pricing')">
+          <span>VIP Plans ₹75/mo</span>
+        </button>
+        <button class="btn-floating-dl pulse-btn" onclick="redirectToApp('floating-bar')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Get Free App</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo" aria-label="AddaTimes Home">
+            <img src="assets/adda-logo.png" alt="adda" class="brand-logo-img">
+            <span class="logo-times-text">times</span>
+          </a>
+          <p class="brand-motto">
+            The pioneer of Bengali digital entertainment. Bringing authentic stories, detective thrills, and cinema masterpieces straight to global screens.
+          </p>
+          <div class="social-links">
+            <a href="javascript:void(0)" aria-label="Facebook" class="social-icon">f</a>
+            <a href="javascript:void(0)" aria-label="Instagram" class="social-icon">ig</a>
+            <a href="javascript:void(0)" aria-label="YouTube" class="social-icon">yt</a>
+            <a href="javascript:void(0)" aria-label="Twitter / X" class="social-icon">x</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="col-title">Explore Content</h4>
+          <ul class="col-links">
+            <li><a href="#movies">Blockbuster Movies</a></li>
+            <li><a href="#web-series">Original Web Series</a></li>
+            <li><a href="#genres">Crime & Thrillers</a></li>
+            <li><a href="#genres">Detective Mysteries</a></li>
+            <li><a href="#featured-trailers">Exclusive Trailers</a></li>
+            <li><a href="#releases">Upcoming Premieres</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="col-title">Download App</h4>
+          <ul class="col-links">
+            <li><a href="https://play.google.com/store/apps/details?id=com.addatimes.app&hl=en" target="_blank" rel="noopener noreferrer" onclick="triggerDownload('android')">Android Phone & Tablet</a></li>
+            <li><a href="https://apps.apple.com/in/app/addatimes/id1451433946" target="_blank" rel="noopener noreferrer" onclick="triggerDownload('ios')">iPhone & iPad (iOS)</a></li>
+            <li><a href="javascript:void(0)" onclick="triggerDownload('android-tv')">Android TV & FireStick</a></li>
+            <li><a href="javascript:void(0)" onclick="triggerDownload('apple-tv')">Apple TV</a></li>
+            <li><a href="javascript:void(0)" onclick="redirectToApp('footer-qr')">Scan QR for App</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="col-title">Support & Company</h4>
+          <ul class="col-links">
+            <li><a href="javascript:void(0)" onclick="openModal('support-modal')">Help Center & FAQ</a></li>
+            <li><a href="javascript:void(0)" onclick="openModal('terms-modal')">Terms of Use</a></li>
+            <li><a href="javascript:void(0)" onclick="openModal('privacy-modal')">Privacy Policy</a></li>
+            <li><a href="javascript:void(0)" onclick="openModal('contact-modal')">Contact Support</a></li>
+            <li><a href="javascript:void(0)" onclick="openModal('press-modal')">Media & Press Inquiries</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">© 2026 AddaTimes Media Private Limited. All rights reserved.</p>
+        <div class="footer-badges">
+          <span class="sec-badge">🔒 256-Bit SSL Secured</span>
+          <span class="sec-badge">⚡ Instant 4K Streaming</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS & DIALOGS ================= -->
+
+  <!-- A. VIDEO TRAILER PLAYER MODAL -->
+  <dialog id="trailer-modal" class="app-dialog video-dialog" aria-labelledby="modal-trailer-title">
+    <div class="dialog-content">
+      <div class="video-dialog-header">
+        <div class="video-meta">
+          <span class="badge-subtle" id="modal-trailer-category">OFFICIAL TRAILER</span>
+          <h3 id="modal-trailer-title" class="modal-title">Trailer Title</h3>
+        </div>
+        <button class="dialog-close-btn" onclick="closeTrailerModal()" aria-label="Close Trailer Player">✕</button>
+      </div>
+      
+      <div class="video-dialog-body">
+        <div class="video-player-container" id="modal-video-container">
+          <video id="modal-video-player" controls preload="metadata" playsinline>
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+      </div>
+
+      <div class="video-dialog-footer">
+        <div class="trailer-desc-wrap">
+          <p id="modal-trailer-synopsis" class="modal-synopsis">
+            Experience the complete uncut story exclusively on the AddaTimes Mobile and TV App.
+          </p>
+        </div>
+        <div class="trailer-modal-cta">
+          <button class="btn-primary pulse-btn" onclick="redirectToApp('trailer-dialog')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download App to Watch Full Show</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- B. CONTENT DETAIL MODAL (Card Click) -->
+  <dialog id="content-detail-modal" class="app-dialog detail-dialog" aria-labelledby="detail-title">
+    <div class="dialog-content">
+      <button class="dialog-close-btn detail-close" onclick="closeDetailModal()" aria-label="Close Details">✕</button>
+      <div class="detail-banner-wrap">
+        <div id="detail-backdrop" class="detail-backdrop-art"></div>
+        <div class="detail-backdrop-gradient"></div>
+        <div class="detail-header-info">
+          <span id="detail-badge" class="badge-subtle">EXCLUSIVE ORIGINAL</span>
+          <h2 id="detail-title" class="detail-main-title">Title Here</h2>
+          <div class="detail-tags-row">
+            <span id="detail-genre" class="tag-pill">Thriller</span>
+            <span id="detail-duration" class="tag-pill">2h 15m</span>
+            <span id="detail-rating" class="tag-pill rating-gold">⭐ 8.9</span>
+            <span id="detail-year" class="tag-pill">2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-body-grid">
+        <div class="detail-synopsis-col">
+          <h4 class="col-heading">Storyline</h4>
+          <p id="detail-synopsis" class="synopsis-paragraph">Detailed synopsis will appear here.</p>
+          
+          <div class="detail-cast-list">
+            <div class="cast-item">
+              <span class="cast-label">Starring:</span>
+              <span id="detail-cast" class="cast-val">Actor Names</span>
+            </div>
+            <div class="cast-item">
+              <span class="cast-label">Director:</span>
+              <span id="detail-director" class="cast-val">Director Name</span>
+            </div>
+            <div class="cast-item">
+              <span class="cast-label">Audio & Subs:</span>
+              <span class="cast-val">Bengali (Original), Hindi Dub, English Subtitles</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-conversion-card">
+          <div class="conversion-box-inner">
+            <span class="box-badge">WATCH FULL CONTENT</span>
+            <p class="box-text">Available only on the official AddaTimes App & TV platforms.</p>
+            <div class="box-cta-stack">
+              <button id="detail-watch-trailer-btn" class="btn-secondary w-full">
+                <span>▶ Watch Official Trailer</span>
+              </button>
+              <button id="detail-watchlist-btn" class="btn-secondary w-full">
+                <span>+ Add to Watchlist</span>
+              </button>
+              <button id="detail-download-app-btn" class="btn-primary w-full pulse-btn" onclick="redirectToApp('detail-modal')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Download App & Stream Now</span>
+              </button>
+            </div>
+            <span class="box-micro">No commitment. Cancel anytime.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- C. APP DOWNLOAD / LEAD MAGNET MODAL -->
+  <dialog id="download-modal" class="app-dialog download-dialog" aria-labelledby="dl-modal-title">
+    <div class="dialog-content">
+      <div class="dl-dialog-header">
+        <div>
+          <span class="lead-badge">GET ADDATIMES FREE</span>
+          <h3 id="dl-modal-title" class="modal-title">Download & Start Watching</h3>
+        </div>
+        <button class="dialog-close-btn" onclick="closeAppDownloadModal()" aria-label="Close">✕</button>
+      </div>
+
+      <div class="dl-dialog-body">
+        <div class="dl-dialog-split">
+          <div class="dl-options-left">
+            <p class="dl-tagline">Select your platform to start instant download:</p>
+            
+            <div class="platform-cards-stack">
+              <a href="https://play.google.com/store/apps/details?id=com.addatimes.app&hl=en" target="_blank" rel="noopener noreferrer" onclick="triggerDownload('android')" class="platform-btn">
+                <div class="platform-icon android-color">🤖</div>
+                <div class="platform-info">
+                  <strong>Android Phone / Tablet</strong>
+                  <span>Download directly from Google Play</span>
+                </div>
+                <span class="platform-action">Get →</span>
+              </a>
+
+              <a href="https://apps.apple.com/in/app/addatimes/id1451433946" target="_blank" rel="noopener noreferrer" onclick="triggerDownload('ios')" class="platform-btn">
+                <div class="platform-icon apple-color">🍏</div>
+                <div class="platform-info">
+                  <strong>iPhone & iPad</strong>
+                  <span>Install via official Apple App Store</span>
+                </div>
+                <span class="platform-action">Get →</span>
+              </a>
+
+              <a href="javascript:void(0)" onclick="triggerDownload('android-tv')" class="platform-btn">
+                <div class="platform-icon tv-color">📺</div>
+                <div class="platform-info">
+                  <strong>Smart TV / FireStick</strong>
+                  <span>Search "AddaTimes" on your TV App Store</span>
+                </div>
+                <span class="platform-action">Info →</span>
+              </a>
+            </div>
+
+            <!-- Instant Phone Link -->
+            <div class="modal-sms-wrap">
+              <span class="sms-mini-label">Or receive download link via SMS:</span>
+              <form class="sms-form mini-form" onsubmit="handleModalSMS(event)">
+                <input type="tel" id="modal-phone-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                <button type="submit" class="btn-primary-sm">Send</button>
+              </form>
+              <span id="modal-sms-feedback" class="sms-feedback-msg"></span>
+            </div>
+          </div>
+
+          <div class="dl-qr-right">
+            <div class="modal-qr-frame">
+              <svg viewBox="0 0 100 100" width="140" height="140">
+                <rect width="100" height="100" fill="#ffffff" rx="8"/>
+                <rect x="10" y="10" width="24" height="24" fill="#0b0e14"/>
+                <rect x="14" y="14" width="16" height="16" fill="#ffffff"/>
+                <rect x="18" y="18" width="8" height="8" fill="#e50914"/>
+                <rect x="66" y="10" width="24" height="24" fill="#0b0e14"/>
+                <rect x="70" y="14" width="16" height="16" fill="#ffffff"/>
+                <rect x="74" y="18" width="8" height="8" fill="#e50914"/>
+                <rect x="10" y="66" width="24" height="24" fill="#0b0e14"/>
+                <rect x="14" y="70" width="16" height="16" fill="#ffffff"/>
+                <rect x="18" y="74" width="8" height="8" fill="#e50914"/>
+                <rect x="38" y="14" width="8" height="8" fill="#0b0e14"/>
+                <rect x="42" y="36" width="16" height="6" fill="#0b0e14"/>
+                <rect x="12" y="44" width="8" height="12" fill="#0b0e14"/>
+                <rect x="70" y="42" width="16" height="8" fill="#0b0e14"/>
+                <rect x="40" y="58" width="8" height="12" fill="#0b0e14"/>
+                <rect x="68" y="66" width="12" height="18" fill="#0b0e14"/>
+              </svg>
+              <span class="qr-caption">Scan with mobile camera to install</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- D. SEARCH OVERLAY DIALOG -->
+  <dialog id="search-modal" class="app-dialog search-dialog" aria-labelledby="global-search-input">
+    <div class="dialog-content">
+      <div class="search-input-header">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="global-search-input" placeholder="Search by title, director, cast, or genre (e.g. Feluda, Thriller)..." autocomplete="off">
+        <button class="dialog-close-btn" onclick="closeSearchModal()" aria-label="Close search">✕</button>
+      </div>
+
+      <div class="search-results-area" id="search-results-container">
+        <div class="search-initial-state">
+          <span class="hint-label">TOP SEARCHES TODAY</span>
+          <div class="popular-search-tags">
+            <button class="tag-search" onclick="executeQuickSearch('Feluda')">Feluda</button>
+            <button class="tag-search" onclick="executeQuickSearch('Shobdo Jobdo')">Shobdo Jobdo</button>
+            <button class="tag-search" onclick="executeQuickSearch('Crime')">Crime Thriller</button>
+            <button class="tag-search" onclick="executeQuickSearch('Sin')">Sin</button>
+            <button class="tag-search" onclick="executeQuickSearch('Byomkesh')">Byomkesh</button>
+            <button class="tag-search" onclick="executeQuickSearch('Khyapa')">Khyapa</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- E. SIGN IN / LOGIN MODAL -->
+  <dialog id="login-modal" class="app-dialog login-dialog" aria-labelledby="login-title">
+    <div class="dialog-content">
+      <div class="login-dialog-header">
+        <h3 id="login-title" class="modal-title">Sign In to AddaTimes</h3>
+        <button class="dialog-close-btn" onclick="closeLoginModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="login-dialog-body">
+        <p class="login-intro">Access your watchlist, resume streaming history, and manage subscriptions.</p>
+        
+        <form class="login-form" onsubmit="handleUserLogin(event)">
+          <div class="form-group">
+            <label for="login-email">Mobile Number or Email</label>
+            <input type="text" id="login-email" placeholder="Enter mobile or email" required>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password / OTP</label>
+            <input type="password" id="login-password" placeholder="Enter password or leave blank for OTP" required>
+          </div>
+          <button type="submit" class="btn-primary w-full mt-2">Sign In</button>
+        </form>
+
+        <div class="login-divider"><span>OR CONTINUE WITH</span></div>
+
+        <div class="social-login-grid">
+          <button class="btn-social" onclick="simulateOAuth('Google')">Google</button>
+          <button class="btn-social" onclick="simulateOAuth('Apple')">Apple</button>
+        </div>
+
+        <div class="login-footnote">
+          <span>New to AddaTimes?</span>
+          <a href="javascript:void(0)" onclick="redirectToApp('login-signup')">Download the App to Sign Up Free</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- SCRIPT ENTRYPOINT -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
