@@ -15,167 +15,23 @@
 </head>
 <body class="dark-theme">
 
-  <!-- 1. LEFT-SIDE VERTICAL NAVIGATION RAIL (Desktop — Hoichoi Reference Pattern) -->
-  <aside id="left-nav-rail" class="left-nav-rail desktop-only" aria-label="Main Navigation">
-    <div class="rail-top">
-      <!-- Brand Logo -->
-      <a href="#hero" class="rail-brand-logo" aria-label="AddaTimes Home">
-        <img src="assets/adda-logo.png" alt="adda" class="rail-logo-img">
-        <span class="rail-logo-times">times</span>
-      </a>
+  <!-- SITE HEADER — Logo | FREE | GET APP (single markup, all screen sizes) -->
+  <header id="site-header" class="site-header" role="banner">
+    <a href="#hero" class="header-brand" aria-label="AddaTimes Home">
+      <img src="assets/adda-logo.png" alt="adda" class="brand-logo-img" width="418" height="164">
+      <span class="logo-times-text">times</span>
+    </a>
 
-      <!-- Primary Get App Action Pill Directly Below Logo -->
-      <button class="rail-app-pill pulse-btn" onclick="redirectToApp('rail-pill')" aria-label="Download AddaTimes App" title="Get AddaTimes App">
+    <div class="header-actions">
+      <button class="header-free-btn" onclick="redirectToApp('left-rail')" aria-label="Free App" title="Free App">
+        <span class="rail-free-text-badge">FREE</span>
+      </button>
+
+      <button class="rail-app-pill pulse-btn" onclick="redirectToAppFromHeader()" aria-label="Download AddaTimes App" title="Get AddaTimes App">
         GET APP
       </button>
     </div>
-
-    <!-- Navigation Icon Stack -->
-    <nav class="rail-nav-links" aria-label="Primary Navigation">
-      <!-- Search -->
-      <button class="rail-icon-btn" onclick="openSearchModal()" aria-label="Search" data-tooltip="Search (⌘K)">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <span class="rail-tooltip-label">Search</span>
-      </button>
-
-      <!-- Home -->
-      <a href="#hero" class="rail-icon-btn active" aria-label="Home" data-tooltip="Home">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
-        <span class="rail-tooltip-label">Home</span>
-      </a>
-
-      <!-- Web Series -->
-      <a href="#web-series" class="rail-icon-btn" aria-label="Web Series" data-tooltip="Web Series">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
-        <span class="rail-tooltip-label">Web Series</span>
-      </a>
-
-      <!-- Movies -->
-      <a href="#movies" class="rail-icon-btn" aria-label="Movies" data-tooltip="Movies">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-        <span class="rail-tooltip-label">Movies</span>
-      </a>
-
-      <!-- Originals -->
-      <a href="#originals" class="rail-icon-btn" aria-label="Originals" data-tooltip="Originals">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-        <span class="rail-tooltip-label">Originals</span>
-      </a>
-
-      <!-- Free App Download -->
-      <button class="rail-icon-btn rail-free-btn" onclick="redirectToApp('left-rail')" aria-label="Free App" data-tooltip="Free App">
-        <span class="rail-free-text-badge">FREE</span>
-        <span class="rail-tooltip-label">Get App</span>
-      </button>
-    </nav>
-
-    <div class="rail-bottom">
-      <!-- Watchlist with dynamic counter -->
-      <button class="rail-icon-btn rail-watchlist-btn" onclick="toggleWatchlistDrawer()" aria-label="My Watchlist" data-tooltip="My Watchlist">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-        <span id="rail-watchlist-badge" class="rail-counter-badge">0</span>
-        <span class="rail-tooltip-label">Watchlist</span>
-      </button>
-
-      <!-- Account / Sign In -->
-      <button class="rail-icon-btn rail-user-btn" onclick="openLoginModal()" aria-label="Sign In" data-tooltip="Sign In">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span class="rail-tooltip-label">Sign In</span>
-      </button>
-    </div>
-  </aside>
-
-  <!-- MOBILE TOP BAR (For screen widths <= 768px) -->
-  <header id="mobile-top-bar" class="mobile-top-bar mobile-only">
-    <div class="mobile-top-left">
-      <button class="mobile-icon-btn mobile-menu-toggle-btn" onclick="toggleMobileNavDrawer()" aria-label="Open Navigation Menu" aria-expanded="false">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      </button>
-      <a href="#hero" class="mobile-brand-logo" aria-label="AddaTimes Home">
-        <img src="assets/adda-logo.png" alt="adda" class="brand-logo-img">
-        <span class="logo-times-text">times</span>
-      </a>
-    </div>
-    <div class="mobile-top-actions">
-      <button class="rail-app-pill-sm pulse-btn" onclick="redirectToApp('mobile-top-bar')" aria-label="Download App">GET APP</button>
-      <button class="mobile-icon-btn" onclick="openSearchModal()" aria-label="Search">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      </button>
-      <button class="mobile-icon-btn" onclick="toggleWatchlistDrawer()" aria-label="My Watchlist">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-        <span id="mobile-top-watchlist-badge" class="badge-count">0</span>
-      </button>
-    </div>
   </header>
-
-  <!-- MOBILE NAVIGATION DRAWER (Slide-out menu for mobile devices) -->
-  <aside id="mobile-nav-drawer" class="mobile-nav-drawer" aria-hidden="true" aria-label="Navigation Menu">
-    <div class="mobile-drawer-header">
-      <div class="mobile-drawer-brand">
-        <img src="assets/adda-logo.png" alt="adda" class="brand-logo-img">
-        <span class="logo-times-text">times</span>
-      </div>
-      <button class="mobile-drawer-close" onclick="toggleMobileNavDrawer()" aria-label="Close menu">✕</button>
-    </div>
-
-    <div class="mobile-drawer-body">
-      <button class="mobile-drawer-vip-card" onclick="toggleMobileNavDrawer(); openPricingModalOrScroll()">
-        <div class="vip-icon">👑</div>
-        <div class="vip-text">
-          <strong>Get AddaTimes VIP</strong>
-          <span>Stream all Originals & Movies ad-free</span>
-        </div>
-        <span class="vip-arrow">→</span>
-      </button>
-
-      <nav class="mobile-drawer-nav">
-        <a href="#hero" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-          <span>Home</span>
-        </a>
-        <a href="#featured-trailers" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          <span>Trailers & Previews</span>
-          <span class="mobile-drawer-badge">13 NEW</span>
-        </a>
-        <a href="#trending" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
-          <span>Trending Top 10</span>
-        </a>
-        <a href="#movies" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line></svg>
-          <span>Movies</span>
-        </a>
-        <a href="#web-series" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
-          <span>Web Series</span>
-        </a>
-        <a href="#originals" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <span>Adda Originals</span>
-        </a>
-        <a href="#genres" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-          <span>Genres</span>
-        </a>
-        <a href="#pricing" class="mobile-drawer-link" onclick="toggleMobileNavDrawer()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-          <span>Plans & Pricing</span>
-        </a>
-      </nav>
-
-      <div class="mobile-drawer-cta-stack">
-        <button class="btn-primary w-full pulse-btn" onclick="toggleMobileNavDrawer(); redirectToApp('mobile-drawer')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          <span>Download Free App</span>
-        </button>
-        <button class="btn-secondary w-full mt-2" onclick="toggleMobileNavDrawer(); openLoginModal()">
-          <span>Sign In to Account</span>
-        </button>
-      </div>
-    </div>
-  </aside>
-  <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" onclick="toggleMobileNavDrawer()"></div>
 
   <!-- WATCHLIST SLIDE-OVER DRAWER -->
   <aside id="watchlist-drawer" class="watchlist-drawer" aria-hidden="true" aria-label="Your Watchlist">
@@ -427,7 +283,10 @@
       </div>
     </section>
 
-    <!-- 6. WEB SERIES — “Binge-Worthy Web Series” -->
+    <!-- ===== DISABLED: BINGE-WORTHY WEB SERIES (start) | uncomment this block to restore ===== -->
+    <!-- NOTE: inner comment delimiters inside this block were rewritten to the form <!~~ text ~~> so the outer comment cannot close early. Change them back to normal HTML comment delimiters when restoring. -->
+    <!--
+    <!~~ 6. WEB SERIES — “Binge-Worthy Web Series” ~~>
     <section id="web-series" class="content-section" aria-labelledby="section-series-heading">
       <div class="section-header">
         <div class="section-title-wrap">
@@ -449,11 +308,13 @@
       <div class="horizontal-shelf-wrapper">
         <button class="scroll-arrow left-arrow" onclick="scrollShelf('series-shelf', -1)" aria-label="Scroll series left">‹</button>
         <div class="horizontal-shelf cards-grid-shelf" id="series-shelf" tabindex="0" role="region" aria-label="Web series catalogue">
-          <!-- Populated via Javascript -->
+          <!~~ Populated via Javascript ~~>
         </div>
         <button class="scroll-arrow right-arrow" onclick="scrollShelf('series-shelf', 1)" aria-label="Scroll series right">›</button>
       </div>
     </section>
+    -->
+    <!-- ===== DISABLED: BINGE-WORTHY WEB SERIES (end) ===== -->
 
     <!-- 7. OTT ORIGINALS / EXCLUSIVES — “Only Here. Only for You.” -->
     <section id="originals" class="content-section originals-spotlight-section" aria-labelledby="section-originals-heading">
@@ -475,7 +336,10 @@
       </div>
     </section>
 
-    <!-- 8. GENRE DISCOVERY — “Find Something You’ll Love” -->
+    <!-- ===== DISABLED: FIND SOMETHING YOU’LL LOVE (start) | uncomment this block to restore ===== -->
+    <!-- NOTE: inner comment delimiters inside this block were rewritten to the form <!~~ text ~~> so the outer comment cannot close early. Change them back to normal HTML comment delimiters when restoring. -->
+    <!--
+    <!~~ 8. GENRE DISCOVERY — “Find Something You’ll Love” ~~>
     <section id="genres" class="content-section" aria-labelledby="section-genre-heading">
       <div class="section-header text-center-mobile">
         <div class="section-title-wrap">
@@ -485,7 +349,7 @@
         </div>
       </div>
 
-      <!-- Enhanced Genre Chips with Counts -->
+      <!~~ Enhanced Genre Chips with Counts ~~>
       <div class="genre-chips-container" id="genre-chips" role="tablist" aria-label="Content genres">
         <button class="genre-chip active" data-genre="all" onclick="selectGenre('all', this)">
           <span class="chip-icon">⚡</span> All Genres <span class="chip-count">80+</span>
@@ -513,7 +377,7 @@
         </button>
       </div>
 
-      <!-- Filtered Showcase Shelf -->
+      <!~~ Filtered Showcase Shelf ~~>
       <div class="genre-results-shelf-wrap mt-4">
         <div class="results-meta-bar">
           <span id="genre-results-count" class="text-dim">Showing 8 handpicked titles for All Genres</span>
@@ -522,12 +386,14 @@
         <div class="horizontal-shelf-wrapper">
           <button class="scroll-arrow left-arrow" onclick="scrollShelf('genre-shelf', -1)" aria-label="Scroll left">‹</button>
           <div class="horizontal-shelf cards-grid-shelf" id="genre-shelf" tabindex="0">
-            <!-- Filtered dynamic cards -->
+            <!~~ Filtered dynamic cards ~~>
           </div>
           <button class="scroll-arrow right-arrow" onclick="scrollShelf('genre-shelf', 1)" aria-label="Scroll right">›</button>
         </div>
       </div>
     </section>
+    -->
+    <!-- ===== DISABLED: FIND SOMETHING YOU’LL LOVE (end) ===== -->
 
     <!-- 9. NEW RELEASES / COMING SOON + COUNTDOWN TIMER -->
     <section id="releases" class="content-section" aria-labelledby="section-releases-heading">
@@ -1099,9 +965,13 @@
           <h4 class="col-title">Explore Content</h4>
           <ul class="col-links">
             <li><a href="#movies">Blockbuster Movies</a></li>
+            <!-- ===== DISABLED: FOOTER LINKS TO WEB SERIES & GENRES (start) | uncomment together with the BINGE-WORTHY WEB SERIES and FIND SOMETHING YOU’LL LOVE sections ===== -->
+            <!--
             <li><a href="#web-series">Original Web Series</a></li>
             <li><a href="#genres">Crime & Thrillers</a></li>
             <li><a href="#genres">Detective Mysteries</a></li>
+            -->
+            <!-- ===== DISABLED: FOOTER LINKS TO WEB SERIES & GENRES (end) ===== -->
             <li><a href="#featured-trailers">Exclusive Trailers</a></li>
             <li><a href="#releases">Upcoming Premieres</a></li>
           </ul>

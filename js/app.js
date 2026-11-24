@@ -68,6 +68,17 @@ function redirectToApp(sourceTag = "generic") {
   openAppDownloadModal(sourceTag);
 }
 
+/**
+ * Header "GET APP" button.
+ * One header now serves every screen size, so the source tag is chosen at
+ * click time to preserve the two original tags: the old mobile top bar
+ * reported 'mobile-top-bar' below 1100px, the desktop rail reported
+ * 'rail-pill' at 1100px and above.
+ */
+function redirectToAppFromHeader() {
+  redirectToApp(window.innerWidth < 1100 ? "mobile-top-bar" : "rail-pill");
+}
+
 // Initialize Application on DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
   initHeaderScroll();
@@ -95,10 +106,12 @@ function initHeaderScroll() {
 
   window.addEventListener("scroll", () => {
     const scrollPos = window.scrollY;
-    if (scrollPos > 40) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
+    if (header) {
+      if (scrollPos > 40) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
     }
 
     // Floating conversion bottom bar visibility
@@ -142,28 +155,6 @@ function initMobileDrawer() {
       drawer.setAttribute("aria-hidden", "false");
     }
   });
-}
-
-function toggleMobileNavDrawer() {
-  const drawer = document.getElementById("mobile-nav-drawer");
-  const backdrop = document.getElementById("mobile-nav-backdrop");
-  const toggleBtn = document.querySelector(".mobile-menu-toggle-btn");
-  if (!drawer) return;
-
-  const isOpen = drawer.classList.contains("open");
-  if (isOpen) {
-    drawer.classList.remove("open");
-    drawer.setAttribute("aria-hidden", "true");
-    if (backdrop) backdrop.classList.remove("open");
-    if (toggleBtn) toggleBtn.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = "";
-  } else {
-    drawer.classList.add("open");
-    drawer.setAttribute("aria-hidden", "false");
-    if (backdrop) backdrop.classList.add("open");
-    if (toggleBtn) toggleBtn.setAttribute("aria-expanded", "true");
-    document.body.style.overflow = "hidden";
-  }
 }
 
 function closeMobileDrawer() {
@@ -733,6 +724,8 @@ function renderMoviesShelf(category) {
    6. WEB SERIES SHELF & TABS (FILLED WITH HIGH DENSITY!)
    ========================================================================== */
 function initSeriesShelf() {
+  // Section 6 (Binge-Worthy Web Series) may be commented out in index.html.
+  if (!document.getElementById("series-shelf")) return;
   renderSeriesShelf("trending");
 }
 
@@ -798,11 +791,11 @@ function initOriginalsGrid() {
   ];
 
   grid.innerHTML = OTT_DATA.originals.map((orig, i) => `
-    <div class="original-feature-card" onclick="openContentDetail('${orig.id}', 'original')">
-      <div class="orig-poster-banner">
-        <div class="orig-art" style="background: ${orig.bg}"></div>
-        <div class="orig-overlay">
-          <span class="orig-eyebrow-badge">${orig.eyebrow}</span>
+    <div class="orig-card" onclick="openContentDetail('${orig.id}', 'original')">
+      <div class="orig-banner-stage">
+        <div class="orig-banner-art" style="background: ${orig.bg}"></div>
+        <div class="orig-banner-overlay">
+          <span class="orig-badge-gold">${orig.eyebrow}</span>
           <span class="orig-rating-pill">${orig.rating}</span>
         </div>
       </div>
@@ -829,6 +822,8 @@ function initOriginalsGrid() {
    8. GENRE DISCOVERY SYSTEM
    ========================================================================== */
 function initGenreDiscovery() {
+  // Section 8 (Find Something You'll Love) may be commented out in index.html.
+  if (!document.getElementById("genre-shelf")) return;
   renderGenreShowcase("all");
 }
 
@@ -1370,10 +1365,6 @@ function initKeyboardShortcuts() {
       openSearchModal();
     }
     if (e.key === "Escape") {
-      const mobDrawer = document.getElementById("mobile-nav-drawer");
-      if (mobDrawer && mobDrawer.classList.contains("open")) {
-        toggleMobileNavDrawer();
-      }
       const wlDrawer = document.getElementById("watchlist-drawer");
       if (wlDrawer && wlDrawer.classList.contains("open")) {
         toggleWatchlistDrawer();
